@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>音楽連続再生</title>
+  </head>
+  <body>
+    <div id='title'>Title</div>
+    <p>
+    <audio id='audio' src='https://s3-ap-northeast-1.amazonaws.com/masui.org/c/b/cb1e51096ffb0a47293116f8ff3d50f6.mp3' controls='true'></audio>
+    <script type="text/javascript">
+      'use strict';
+      let titles = [] // 曲のタイトル
+      let ids = [] // S3のID
+      let urls = []
+      let m = location.href.match(/\?(.*)$/)
+      var title = document.getElementById('title')
+      if(m){
+	  let args = m[1].split(/&/)
+	  for(var i=0; i<args.length;i++){
+	      let param = args[i].split(/=/)
+	      if(param[0] == 'ids'){
+		  ids = param[1].split(/,/)
+	      }
+	      if(param[0] == 'titles'){
+		  titles = param[1].split(/,/)
+	      }
+	  }
+	  if(ids.length > 0 && titles.length > 0 && ids.length == titles.length){
+	      for(var i=0;i<ids.length;i++){
+		  let title = titles[i]
+		  let id = ids[i]
+		  let m = id.match(/^(.)(.)/)
+		  let url = `https://s3-ap-northeast-1.amazonaws.com/masui.org/${m[1]}/${m[2]}/${id}.mp3`
+		  urls.push(url)
+	      }
+	      var audio = document.getElementById('audio');
+	      //audio.style.width = '100%';
+	      //audio.style.height = 'auto';
+	      audio.controls = true;
+	      //audio.volume = 0.2;
+	      
+	      audio.src = urls[0]
+	      audio.play();
+
+	      title.innerHTML = unescape(titles[0])
+	      
+	      // イベントendedは下記コメント参照
+	      var index = 0;
+	      audio.addEventListener('ended', function(){
+		  index++;
+		  if (index < urls.length) {
+		      audio.src = urls[index]
+		      audio.play();
+		      title.innerHTML = unescape(titles[index])
+		  } else {
+		      audio.src = urls[0]
+		      audio.play();
+		      title.innerHTML = unescape(titles[0])
+		      index = 0;
+		  }
+	      });
+	  }
+      }
+
+    </script>
+  </body>
+</html>
