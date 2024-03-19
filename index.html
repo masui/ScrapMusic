@@ -23,7 +23,7 @@
 		  ids = param[1].split(/,/)
 	      }
 	      if(param[0] == 'titles'){
-		  titles = param[1].split(/,/)
+		  titles = unescape(param[1]).split(/,/)
 	      }
 	  }
 	  if(ids.length > 0 && titles.length > 0 && ids.length == titles.length){
