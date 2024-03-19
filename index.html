@@ -60,7 +60,7 @@
 		  } else {
 		      audio.src = urls[0]
 		      audio.play();
-		      title.innerHTML = unescape(titles[0])
+		      title.innerHTML = unescape(titles[0]).replace(/\+/g,' ')
 		      index = 0;
 		  }
 	      });
