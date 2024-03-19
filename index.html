@@ -56,7 +56,7 @@
 		  if (index < urls.length) {
 		      audio.src = urls[index]
 		      audio.play();
-		      title.innerHTML = unescape(titles[index])
+		      title.innerHTML = unescape(titles[index]).replace(/\+/g,' ')
 		  } else {
 		      audio.src = urls[0]
 		      audio.play();
