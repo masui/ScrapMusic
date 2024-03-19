@@ -25,10 +25,10 @@
 		  ids = unescape(param[1]).split(/,/)
 	      }
 	      if(param[0] == 'titles'){
-		  titles = decodeURI(param[1]).split(/,/)
+		  titles = decodeURI(unescape(param[1])).split(/,/)
 	      }
 	      if(param[0] == 'urls'){
-		  urls = decodeURI(param[1]).split(/,/)
+		  urls = decodeURI(unescape(param[1])).split(/,/)
 	      }
 	  }
 	  if(urls.length > 0 && titles.length > 0 && urls.length == titles.length){
