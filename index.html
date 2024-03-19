@@ -32,7 +32,7 @@
 	  alert(titles)
 	  if(ids.length > 0 && titles.length > 0 && ids.length == titles.length){
 	      for(var i=0;i<ids.length;i++){
-		  let title = titles[i]
+		  let title = titles[i].replace(/\+/g,' ')
 		  let id = ids[i]
 		  let m = id.match(/^(.)(.)/)
 		  let url = `https://s3-ap-northeast-1.amazonaws.com/masui.org/${m[1]}/${m[2]}/${id}.mp3`
