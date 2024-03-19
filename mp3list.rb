@@ -26,7 +26,7 @@ File.open('list.txt','w'){ |f|
       # puts md5
       s3url = "https://s3-ap-northeast-1.amazonaws.com/#{bucket}/#{md5[0]}/#{md5[1]}/#{md5}.mp3"
       title = file.sub(/\.mp3/,'')
-      f.puts " [#{s3url} #{title}]"
+      f.puts " [#{title} #{s3url}]" # この順番ならソート可能
       s = Shellwords.escape("#{dir}/#{file}")
       STDERR.puts "upload #{s}"
       system "upload #{s}"
