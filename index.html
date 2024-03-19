@@ -1,21 +1,22 @@
 <!DOCTYPE html>
+<!--
+    ScrapMusic.org で音楽を連続再生する
+-->
 <html lang="ja">
   <head>
     <meta charset="utf-8">
-    <title>音楽連続再生</title>
+    <title>ScrapMusic: 音楽連続再生</title>
   </head>
   <body>
-    <div id='title'>Title</div>
+    <div id='title'>曲タイトル</div>
     <p>
     <audio id='audio' src='https://s3-ap-northeast-1.amazonaws.com/masui.org/c/b/cb1e51096ffb0a47293116f8ff3d50f6.mp3' controls='true'></audio>
     <script type="text/javascript">
       'use strict';
-      //alert('再生ボタンを押してください')
       let titles = [] // 曲のタイトル
       let ids = [] // S3のID
       let urls = []
       let m = location.href.match(/\?(.*)$/)
-      //alert(m[1])
       var title = document.getElementById('title')
       if(m){
 	  let args = m[1].split(/&/)
@@ -32,15 +33,6 @@
 	      }
 	  }
 	  if(urls.length > 0 && titles.length > 0 && urls.length == titles.length){
-	      /*
-	      for(var i=0;i<ids.length;i++){
-		  let title = titles[i].replace(/\+/g,' ')
-		  let id = ids[i]
-		  let m = id.match(/^(.)(.)/)
-		  let url = `https://s3-ap-northeast-1.amazonaws.com/masui.org/${m[1]}/${m[2]}/${id}.mp3`
-		  urls.push(url)
-	      }
-	      */
 	      var audio = document.getElementById('audio');
 	      //audio.style.width = '100%';
 	      //audio.style.height = 'auto';

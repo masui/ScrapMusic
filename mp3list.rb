@@ -33,19 +33,22 @@ files = files.sort { |a,b|
   a[0] <=> b[0]
 }
 
-File.open('list.txt','w'){ |f|
-  files.each { |e|
-    f.puts " [#{e[0]} #{e[1]}]"
-  }
-  f.puts
-
+listfile = "/tmp/mp3list.txt"
+File.open(listfile,'w'){ |f|
   all = ' [すべて再生 https://scrapmusic.org/?urls='
   all += files.map { |e| CGI.escape(e[1]) }.join("%2C")
   all += '&titles='
   all += files.map { |e| CGI.escape(e[0]).gsub('+','%20') }.join("%2C")
   all += ']'
-  f. puts all
+  f.puts all
+  f.puts
+  
+  files.each { |e|
+    f.puts " [#{e[0]} #{e[1]}]"
+  }
 }
+
+system "cat #{listfile} | pbcopy"
 
 
 # ALL
