@@ -22,7 +22,7 @@
 	  for(var i=0; i<args.length;i++){
 	      let param = args[i].split(/=/)
 	      if(param[0] == 'ids'){
-		  ids = param[1].split(/,/)
+		  ids = unescape(param[1]).split(/,/)
 	      }
 	      if(param[0] == 'titles'){
 		  titles = unescape(param[1]).split(/,/)
