@@ -47,7 +47,7 @@
 	      audio.src = urls[0]
 	      audio.play();
 
-	      title.innerHTML = unescape(titles[0])
+	      title.innerHTML = titles[0].replace(/\+/g,' ')
 	      
 	      // イベントendedは下記コメント参照
 	      var index = 0;
@@ -56,11 +56,11 @@
 		  if (index < urls.length) {
 		      audio.src = urls[index]
 		      audio.play();
-		      title.innerHTML = unescape(titles[index]).replace(/\+/g,' ')
+		      title.innerHTML = titles[index].replace(/\+/g,' ')
 		  } else {
 		      audio.src = urls[0]
 		      audio.play();
-		      title.innerHTML = unescape(titles[0]).replace(/\+/g,' ')
+		      title.innerHTML = titles[0].replace(/\+/g,' ')
 		      index = 0;
 		  }
 	      });
