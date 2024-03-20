@@ -29,7 +29,13 @@
 	      if(param[0] == 'titles'){
 		  alert('-----')
 		  alert(param[1])
-		  titles = decodeURI(unescape(param[1])).split(/%09/)
+		  t = params[1].split(/%09/)
+		  titles = []
+		  for(var i=0;i<t.length;i++){
+		      titles.push(decodeURI(unescape(t[i])))
+		  }
+		  // titles = decodeURI(unescape(param[1])).split(/%09/)
+		  alert(titles.length)
 	      }
 	      if(param[0] == 'urls'){
 		  urls = decodeURI(unescape(param[1])).split(/,/)
