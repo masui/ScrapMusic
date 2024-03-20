@@ -36,7 +36,8 @@ files = files.sort { |a,b|
 listfile = "/tmp/mp3list.txt"
 File.open(listfile,'w'){ |f|
   all = ' [すべて再生 https://scrapmusic.org/?urls='
-  all += files.map { |e| CGI.escape(e[1]) }.join("%2C")
+  # all += files.map { |e| CGI.escape(e[1]) }.join("%2C")
+  all += files.map { |e| CGI.escape(e[1]) }.join("%09")
   all += '&titles='
   #all += files.map { |e| CGI.escape(e[0]).gsub('+','%20') }.join("%2C")
   all += files.map { |e| CGI.escape(e[0]).gsub('+','%20') }.join("%09")

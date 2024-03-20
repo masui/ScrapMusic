@@ -23,7 +23,12 @@
 	  for(var i=0; i<args.length;i++){
 	      let param = args[i].split(/=/)
 	      if(param[0] == 'ids'){
-		  ids = unescape(param[1]).split(/,/)
+		  //ids = unescape(param[1]).split(/,/)
+		  var t = param[1].split(/%09/)
+		  ids = []
+		  for(var i=0;i<t.length;i++){
+		      ids.push(decodeURI(unescape(t[i])))
+		  }
 	      }
 
 	      if(param[0] == 'titles'){
