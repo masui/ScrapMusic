@@ -18,7 +18,7 @@
       let urls = []
       let m = location.href.match(/\?(.*)$/)
       var title = document.getElementById('title')
-      alert(`m = ${m}`)
+      //alert(`m = ${m}`)
       if(m){
 	  let args = m[1].split(/&/)
 	  for(var i=0; i<args.length;i++){
@@ -32,7 +32,7 @@
 		  }
 	      }
 	      if(param[0] == 'titles'){
-		  alert("titles defined")
+		  //alert("titles defined")
 		  //alert(param[1])
 		  var t = param[1].split(/%09/)
 		  titles = []
@@ -46,18 +46,18 @@
 	      }
 	      if(param[0] == 'urls'){
 		  // urls = decodeURI(unescape(param[1])).split(/,/)
-		  alert('urls defined')
+		  //alert('urls defined')
 		  var t = param[1].split(/%09/)
 		  urls = []
 		  for(var j=0;j<t.length;j++){
 		      urls.push(decodeURI(unescape(t[j])))
 		  }
-		  alert(urls)
-		  alert(urls.length)
+		  //alert(urls)
+		  //alert(urls.length)
 	      }
 	  }
-	  alert(titles)
-	  alert(titles.length)
+	  //alert(titles)
+	  //alert(titles.length)
 	  if(urls.length > 0 && titles.length > 0 && urls.length == titles.length){
 	      var audio = document.getElementById('audio');
 	      //audio.style.width = '100%';
