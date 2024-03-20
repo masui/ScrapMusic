@@ -26,7 +26,7 @@ Dir.open(dir).each { |file|
     files.push [title, s3url]
     s = Shellwords.escape("#{dir}/#{file}")
     STDERR.puts "upload #{s}"
-    system "upload #{s}"
+    # system "upload #{s}"
   end
 }
 files = files.sort { |a,b|
@@ -38,7 +38,8 @@ File.open(listfile,'w'){ |f|
   all = ' [すべて再生 https://scrapmusic.org/?urls='
   all += files.map { |e| CGI.escape(e[1]) }.join("%2C")
   all += '&titles='
-  all += files.map { |e| CGI.escape(e[0]).gsub('+','%20') }.join("%2C")
+  #all += files.map { |e| CGI.escape(e[0]).gsub('+','%20') }.join("%2C")
+  all += files.map { |e| CGI.escape(e[0]).gsub('+','%20') }.join("%09")
   all += ']'
   f.puts all
   f.puts
