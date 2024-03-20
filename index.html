@@ -44,7 +44,12 @@
 		  //alert(titles[0])
 	      }
 	      if(param[0] == 'urls'){
-		  urls = decodeURI(unescape(param[1])).split(/,/)
+		  // urls = decodeURI(unescape(param[1])).split(/,/)
+		  var t = param[1].split(/%09/)
+		  urls = []
+		  for(var i=0;i<t.length;i++){
+		      urls.push(decodeURI(unescape(t[i])))
+		  }
 	      }
 	  }
 	  if(urls.length > 0 && titles.length > 0 && urls.length == titles.length){
