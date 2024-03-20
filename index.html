@@ -32,7 +32,8 @@
 		  var t = param[1].split(/%09/)
 		  titles = []
 		  for(var i=0;i<t.length;i++){
-		      titles.push(unescape(decodeURI(t[i])))
+		      //titles.push(unescape(decodeURI(t[i])))
+		      titles.push(decodeURI(unescape(t[i])))
 		  }
 		  // titles = decodeURI(unescape(param[1])).split(/%09/)
 		  alert(titles.length)
