@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--
     ScrapMusic.org で音楽を連続再生する
--->
+  -->
 <html lang="ja">
   <head>
     <meta charset="utf-8">
@@ -9,55 +9,34 @@
   </head>
   <body>
     <div id='title'>曲タイトル</div>
-    <p>
+    <p></p>
+    <!-- 1秒の無音mp3 -->
     <audio id='audio' src='https://s3-ap-northeast-1.amazonaws.com/masui.org/c/b/cb1e51096ffb0a47293116f8ff3d50f6.mp3' controls='true'></audio>
     <script type="text/javascript">
       'use strict';
       let titles = [] // 曲のタイトル
-      let ids = [] // S3のID
       let urls = []
       let m = location.href.match(/\?(.*)$/)
       var title = document.getElementById('title')
-      //alert(`m = ${m}`)
       if(m){
 	  let args = m[1].split(/&/)
 	  for(var i=0; i<args.length;i++){
 	      let param = args[i].split(/=/)
-	      if(param[0] == 'ids'){
-		  //ids = unescape(param[1]).split(/,/)
-		  var t = param[1].split(/%09/)
-		  ids = []
-		  for(var j=0;j<t.length;j++){
-		      ids.push(decodeURI(unescape(t[j])))
-		  }
-	      }
 	      if(param[0] == 'titles'){
-		  //alert("titles defined")
-		  //alert(param[1])
 		  var t = param[1].split(/%09/)
 		  titles = []
 		  for(var j=0;j<t.length;j++){
-		      //titles.push(unescape(decodeURI(t[i])))
 		      titles.push(decodeURI(unescape(t[j])))
 		  }
-		  // titles = decodeURI(unescape(param[1])).split(/%09/)
-		  //alert(titles.length)
-		  //alert(titles[0])
 	      }
 	      if(param[0] == 'urls'){
-		  // urls = decodeURI(unescape(param[1])).split(/,/)
-		  //alert('urls defined')
 		  var t = param[1].split(/%09/)
 		  urls = []
 		  for(var j=0;j<t.length;j++){
 		      urls.push(decodeURI(unescape(t[j])))
 		  }
-		  //alert(urls)
-		  //alert(urls.length)
 	      }
 	  }
-	  //alert(titles)
-	  //alert(titles.length)
 	  if(urls.length > 0 && titles.length > 0 && urls.length == titles.length){
 	      var audio = document.getElementById('audio');
 	      //audio.style.width = '100%';
@@ -70,7 +49,7 @@
 
 	      title.innerHTML = titles[0].replace(/\+/g,' ')
 	      
-	      // イベントendedは下記コメント参照
+	      // 再生が終わるとendedイベントが出る
 	      var index = 0;
 	      audio.addEventListener('ended', function(){
 		  index++;
@@ -87,7 +66,6 @@
 	      });
 	  }
       }
-
     </script>
   </body>
 </html>

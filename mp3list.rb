@@ -26,7 +26,7 @@ Dir.open(dir).each { |file|
     files.push [title, s3url]
     s = Shellwords.escape("#{dir}/#{file}")
     STDERR.puts "upload #{s}"
-    # system "upload #{s}"
+    system "upload #{s}"
   end
 }
 files = files.sort { |a,b|
